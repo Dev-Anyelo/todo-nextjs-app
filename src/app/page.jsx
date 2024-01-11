@@ -12,6 +12,7 @@ const loadTasks = async () => {
 };
 
 const Home = async () => {
+  
   const tasks = await loadTasks();
 
   return (
