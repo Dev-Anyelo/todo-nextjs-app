@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server";
 import { prisma } from "@/libs/prisma";
+import { NextResponse } from "next/server";
 
 //Get all tasks
 export async function GET() {
@@ -21,9 +21,11 @@ export async function POST(request) {
 
     return NextResponse.json(newTask);
   } catch (error) {
-    return NextResponse.json(error.message);
+    console.error("Error al crear una nueva tarea:", error);
+    return NextResponse.json({ error: "No se pudo crear la tarea" }, { status: 500 });
   }
 }
+
 
 //Delete all tasks
 export async function DELETE() {

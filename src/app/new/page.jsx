@@ -4,7 +4,9 @@ import Form from "@/components/Form";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
+
 const NewTask = ({ params }) => {
+  
   const router = useRouter();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
