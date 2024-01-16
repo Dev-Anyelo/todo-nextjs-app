@@ -5,7 +5,6 @@ import TaskCard from "@/components/TaskCard";
 import FilterTask from "@/components/FilterTask";
 import { useRouter } from "next/navigation";
 
-
 const loadTasks = async () => {
   const res = await fetch(`http://localhost:3000/api/tasks`);
   const data = await res.json();
@@ -15,7 +14,6 @@ const loadTasks = async () => {
 };
 
 const Home = () => {
-
   const router = useRouter();
   const [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState("all");
@@ -59,18 +57,22 @@ const Home = () => {
     router.refresh();
   };
 
-
   return (
     <main className="flex min-h-screen flex-col mx-auto Onest">
       <div className="flex justify-between items-center">
         <FilterTask onFilterChange={handleFilterChange} />
-        <button
-          type="button"
-          className="bg-red-800 hover:bg-red-900 text-white sm:py-2 sm:px-3 p-2 rounded w-fit text-sm"
-          onClick={deleteTasks}
-        >
-          Eliminar tareas
-        </button>
+        {
+          //solo mostar el boton de eliminar tarea si hay tareas
+          tasks && tasks.length > 0 && (
+            <button
+              type="button"
+              className="bg-red-800 hover:bg-red-900 text-white sm:py-2 sm:px-3 p-2 rounded w-fit text-sm"
+              onClick={deleteTasks}
+            >
+              Eliminar tareas
+            </button>
+          )
+        }
       </div>
       <div
         className={`w-full grid grid-cols-2 sm:flex flex-wrap ${
