@@ -61,18 +61,15 @@ const Home = () => {
     <main className="flex min-h-screen flex-col mx-auto Onest">
       <div className="flex justify-between items-center">
         <FilterTask onFilterChange={handleFilterChange} />
-        {
-          //solo mostar el boton de eliminar tarea si hay tareas
-          tasks && tasks.length > 0 && (
-            <button
-              type="button"
-              className="bg-red-800 hover:bg-red-900 text-white sm:py-2 sm:px-3 p-2 rounded w-fit text-sm"
-              onClick={deleteTasks}
-            >
-              Eliminar tareas
-            </button>
-          )
-        }
+        {tasks && tasks.length > 0 && (
+          <button
+            type="button"
+            className="bg-red-800 hover:bg-red-900 text-white sm:py-2 sm:px-3 p-2 rounded w-fit text-sm"
+            onClick={deleteTasks}
+          >
+            Eliminar tareas
+          </button>
+        )}
       </div>
       <div
         className={`w-full grid grid-cols-2 sm:flex flex-wrap ${
