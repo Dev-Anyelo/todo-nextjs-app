@@ -13,6 +13,8 @@ const loadTasks = async () => {
   // return await prisma.task.findMany();
 };
 
+export const dynamic = "force-dynamic";
+
 const Home = () => {
   const router = useRouter();
   const [tasks, setTasks] = useState([]);
