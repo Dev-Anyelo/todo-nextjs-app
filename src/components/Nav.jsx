@@ -9,11 +9,6 @@ const links = [
     name: "Todo App",
     href: "/",
   },
-
-  // {
-  //   name: "About",
-  //   href: "/about",
-  // },
 ];
 
 const Nav = () => {
