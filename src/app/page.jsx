@@ -4,13 +4,14 @@ import { useEffect, useState } from "react";
 import TaskCard from "@/components/TaskCard";
 import FilterTask from "@/components/FilterTask";
 import { useRouter } from "next/navigation";
+// import { prisma } from "@/libs/prisma";
+
 
 const loadTasks = async () => {
-  // const res = await fetch(`http://localhost:3000/api/tasks`);
-  // const data = await res.json();
-  // return data;
-
-  return await prisma.task.findMany();
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+  const res = await fetch(`${apiUrl}/api/tasks`);
+  const data = await res.json();
+  return data;
 };
 
 export const dynamic = "force-dynamic";
