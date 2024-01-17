@@ -6,11 +6,11 @@ import FilterTask from "@/components/FilterTask";
 import { useRouter } from "next/navigation";
 
 const loadTasks = async () => {
-  const res = await fetch(`http://localhost:3000/api/tasks`);
-  const data = await res.json();
-  return data;
+  // const res = await fetch(`http://localhost:3000/api/tasks`);
+  // const data = await res.json();
+  // return data;
 
-  // return await prisma.task.findMany();
+  return await prisma.task.findMany();
 };
 
 export const dynamic = "force-dynamic";
