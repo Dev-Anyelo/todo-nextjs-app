@@ -9,6 +9,11 @@ const links = [
     name: "Todo App",
     href: "/",
   },
+
+  {
+    name: "Crear",
+    href: "/new",
+  }
 ];
 
 const Nav = () => {
@@ -24,16 +29,12 @@ const Nav = () => {
 
             className={`text-sm sm:text-lg ${
               pathname === link.href
-                ? "text-white"
-                : "text-gray-400 hover:text-white"
+                ? "text-white font-bold"
+                : "text-gray-300 hover:text-white"
             }`}
           >
             {link.name}
           </Link>
-          <Link 
-            href="/new"
-            className="text-sm sm:text-lg text-white hover:text-white p-2 rounded-md bg-slate-800 "
-            >Crear</Link>
         </>
       ))}
     </div>
