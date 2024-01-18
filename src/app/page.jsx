@@ -109,11 +109,11 @@ const Home = () => {
       </div>
       <div
         className={`w-full flex sm:grid sm:grid-cols-2 md:grid md:grid-cols-3 lg:grid lg:grid-cols-4 xl:grid xl:grid-cols-5 flex-wrap max-w-8xl ${
-          tasks.length === 0 ? "flex justify-center" : "justify-start"
+        tasks.length === 0 ? "flex justify-center" : "justify-start"
         } items-center gap-3 `}
       >
         {tasks.length === 0 ? (
-          <div className="flex h-[calc(100vh-20rem)] justify-center items-center gap-4 col-span-2 sm:text-center font-Onest">
+          <div className="flex h-[calc(100vh-20rem)] justify-center items-center gap-4  sm:col-span-2 md:col-span-3 lg:col-span-4 xl:col-span-5 sm:text-center font-Onest">
             <h1 className="text-gray-600 text-2xl sm:text-4xl text-center">
               No tienes tareas aún!
             </h1>
