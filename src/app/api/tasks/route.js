@@ -22,10 +22,12 @@ export async function POST(request) {
     return NextResponse.json(newTask);
   } catch (error) {
     console.error("Error al crear una nueva tarea:", error);
-    return NextResponse.json({ error: "No se pudo crear la tarea" }, { status: 500 });
+    return NextResponse.json(
+      { error: "No se pudo crear la tarea" },
+      { status: 500 }
+    );
   }
 }
-
 
 //Delete all tasks
 export async function DELETE() {
