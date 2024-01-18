@@ -12,6 +12,8 @@ const loadTasks = async () => {
   return data;
 };
 
+export const dynamic = 'force-dynamic'
+
 const Home = () => {
   const router = useRouter();
   const [tasks, setTasks] = useState([]);
