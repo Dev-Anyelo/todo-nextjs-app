@@ -112,9 +112,9 @@ const Home = () => {
           !tasks || tasks.length === 0 ? "justify-center" : "justify-start"
         } items-center gap-3 `}
       >
-        {!tasks || tasks.length === 0 ? (
-          <div className="flex h-[calc(100vh-7rem)] justify-center items-center gap-4 col-span-2 sm:text-center font-Onest">
-            <h1 className="text-gray-400 text-2xl sm:text-4xl text-center">
+        {tasks.length === 0 ? (
+          <div className="flex h-[calc(100vh-20rem)] justify-center items-center gap-4 col-span-2 sm:text-center font-Onest">
+            <h1 className="text-gray-600 text-2xl sm:text-4xl text-center">
               No tienes tareas aún!
             </h1>
           </div>

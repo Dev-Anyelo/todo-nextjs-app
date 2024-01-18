@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const Form = ({ onSubmit, title, setTitle, description, setDescription }) => {
+const Form = ({ onSubmit, title, setTitle, description, setDescription, id }) => {
   return (
     <form
       onSubmit={onSubmit}
@@ -27,7 +27,9 @@ const Form = ({ onSubmit, title, setTitle, description, setDescription }) => {
       />
 
       <button className="bg-blue-800 hover:bg-blue-900 text-white p-2 sm:p-3 rounded w-full text-base sm:text-lg">
-        Crear
+       {
+          id ? "Editar Tarea" : "Crear Tarea"
+       }
       </button>
 
       <Link href="/">

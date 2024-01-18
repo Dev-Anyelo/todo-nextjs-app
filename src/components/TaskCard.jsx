@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import Swal from "sweetalert2";
 import Confetti from "react-confetti";
 
 const TaskCard = ({ id, title, description, date, isCompleted }) => {
@@ -26,39 +25,6 @@ const TaskCard = ({ id, title, description, date, isCompleted }) => {
     });
   };
 
-  const deleteTask = async () => {
-    const result = await Swal.fire({
-      title: "Estás seguro?",
-      text: "Se eliminará permanentemente!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Eliminar tarea",
-      cancelButtonText: "Cancelar",
-      color: "#fff",
-      background: "#1f2937",
-    });
-
-    if (result.isConfirmed) {
-      await Swal.fire({
-        title: "Tarea eliminada!",
-        text: "La tarea se eliminó correctamente.",
-        icon: "success",
-        color: "#fff",
-        background: "#1f2937",
-      });
-
-      // Delete task
-      await fetch(`/api/tasks/${id}`, {
-        method: "DELETE",
-      });
-
-      router.refresh();
-      router.push("/");
-    }
-  };
-
   return (
     <>
       {confetti && completed ? (
@@ -72,9 +38,9 @@ const TaskCard = ({ id, title, description, date, isCompleted }) => {
           onConfettiComplete={() => setConfetti(false)}
         />
       ) : null}
-      <div className="text-wrap p-4 rounded flex flex-col gap-3 w-full sm:w-[250px] h-fit bg-slate-900 hover:bg-slate-800 border border-slate-700 text-white font-Onest">
+      <div className="text-wrap p-4 rounded flex flex-col gap-3 w-full sm:w-fit h-fit bg-slate-900 hover:bg-slate-800 border border-slate-700 text-white font-Onest">
         <h1 className="sm:text-xl text-base text-slate-100">{title}</h1>
-        <p className="sm:text-lg text-sm text-slate-300 w-fit">{description}</p>
+        <p className="sm:text-lg text-sm text-slate-300 w-full text-wrap h-full">{description}</p>
         <div className="flex justify-center sm:justify-end items-center mt-3">
           <p
             onClick={handleCompleted}
@@ -108,13 +74,6 @@ const TaskCard = ({ id, title, description, date, isCompleted }) => {
               Editar
             </button>
           </Link>
-          <button
-            type="button"
-            className="bg-red-800 hover:bg-red-900 text-white sm:py-2 sm:px-3 p-2 rounded sm:w-fit w-full text-sm"
-            onClick={deleteTask}
-          >
-            Eliminar
-          </button>
         </div>
       </div>
     </>

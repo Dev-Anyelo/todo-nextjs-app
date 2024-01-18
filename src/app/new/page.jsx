@@ -59,7 +59,6 @@ const NewTask = ({ params }) => {
         },
       });
       const data = await res.json();
-      console.log(data);
     }
     router.refresh();
     router.push("/");
@@ -76,6 +75,7 @@ const NewTask = ({ params }) => {
         description={description}
         setTitle={setTitle}
         setDescription={setDescription}
+        id={params.id}
       />
     </div>
   );
