@@ -21,6 +21,7 @@ const Nav = () => {
           <Link
             href={link.href}
             key={link.name}
+
             className={`text-sm sm:text-lg ${
               pathname === link.href
                 ? "text-white"

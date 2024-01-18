@@ -61,8 +61,8 @@ const NewTask = ({ params }) => {
       const data = await res.json();
       console.log(data);
     }
-    router.push("/");
     router.refresh();
+    router.push("/");
   };
 
   return (

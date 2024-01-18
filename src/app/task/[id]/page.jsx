@@ -3,6 +3,7 @@ import TaskDetails from "@/components/TaskDetails";
 import { Suspense } from "react";
 
 const getTask = async (id) => {
+ 
   try {
     // 1 => CONSULTANDO POR PETICIONES
     // const res = await fetch(`http://localhost:3000/api/tasks/${id}`);
@@ -22,8 +23,6 @@ const getTask = async (id) => {
 
 const taskDetail = async ({ params }) => {
   const task = await getTask(params.id);
-
-  console.log(task);
 
   return (
     <div>

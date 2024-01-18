@@ -1,8 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;700&family=Onest:wght@100;200;500;700;800&family=Source+Sans+3:wght@200;500;900&display=swap');
+/* @import 'sweetalert2/src/sweetalert2.scss'; */
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 
 
 body {

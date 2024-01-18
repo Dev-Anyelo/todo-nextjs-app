@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Swal from "sweetalert2";
 
 const TaskDetails = ({ id, title, description, date, isCompleted }) => {
   const router = useRouter();
@@ -22,23 +23,41 @@ const TaskDetails = ({ id, title, description, date, isCompleted }) => {
     });
   };
 
-  const deleteTask = async () => {
-    const res = await fetch(`/api/tasks/${id}`, {
-      method: "DELETE",
+  const handleDeleteTask = async () => {
+    const result = await Swal.fire({
+      title: "Estás seguro?",
+      text: "Se eliminará permanentemente!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Eliminar tarea",
+      cancelButtonText: "Cancelar",
+      color: "#fff",
+      background: "#1f2937",
     });
-    const data = await res.json();
-    console.log("Se eliminó la tarea con ID: ", data.id);
-    router.push("/");
-    router.refresh();
+
+    if (result.isConfirmed) {
+      await Swal.fire({
+        title: "Tarea eliminada!",
+        text: "La tarea se eliminó correctamente.",
+        icon: "success",
+        color: "#fff",
+        background: "#1f2937",
+      });
+
+      // Delete task
+      await fetch(`/api/tasks/${id}`, {
+        method: "DELETE",
+      });
+
+      router.refresh();
+      router.push("/");
+    }
   };
 
   return (
-    <div
-      className="p-4 rounded flex flex-col gap-3 mx-auto  w-full sm:max-w-4xl h-fit bg-slate-900 hover:bg-slate-800 border border-slate-700 text-white font-Onest"
-      // onClick={() => {
-      //   router.push(`/edit/${id}`);
-      // }}
-    >
+    <div className="p-4 rounded flex flex-col gap-3 mx-auto  w-full sm:max-w-4xl h-fit bg-slate-900 hover:bg-slate-800 border border-slate-700 text-white font-Onest">
       <h1 className="sm:text-xl text-base text-slate-100">{title}</h1>
       <p className="sm:text-lg text-sm text-slate-300">{description}</p>
       <div className="flex justify-between sm:justify-end items-center w-full mt-3">
@@ -82,8 +101,8 @@ const TaskDetails = ({ id, title, description, date, isCompleted }) => {
           </Link>
           <button
             type="button"
+            onClick={handleDeleteTask}
             className="bg-red-800 hover:bg-red-900 text-white sm:py-2 sm:px-3 p-2 rounded text-sm sm:w-fit w-full"
-            onClick={deleteTask}
           >
             Eliminar
           </button>

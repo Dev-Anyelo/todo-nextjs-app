@@ -11,6 +11,7 @@ const Form = ({ onSubmit, title, setTitle, description, setDescription }) => {
         value={title}
         id="title"
         type="text"
+        autoFocus
         className="rounded outline-none p-2 w-full bg-slate-800 border border-slate-700"
         placeholder="Título"
         onChange={(e) => setTitle(e.target.value)}

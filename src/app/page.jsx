@@ -4,17 +4,13 @@ import { useEffect, useState } from "react";
 import TaskCard from "@/components/TaskCard";
 import FilterTask from "@/components/FilterTask";
 import { useRouter } from "next/navigation";
-// import { prisma } from "@/libs/prisma";
-
+import Swal from "sweetalert2";
 
 const loadTasks = async () => {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
-  const res = await fetch(`${apiUrl}/api/tasks`);
+  const res = await fetch(`/api/tasks`);
   const data = await res.json();
   return data;
 };
-
-export const dynamic = "force-dynamic";
 
 const Home = () => {
   const router = useRouter();
@@ -47,17 +43,47 @@ const Home = () => {
     }
   };
 
+  // Handle filter change
   const handleFilterChange = (newFilter) => {
     setFilter(newFilter);
   };
 
-  const deleteTasks = async () => {
-    const res = await fetch(`/api/tasks`, {
-      method: "DELETE",
+  // Delete tasks
+  const handleDeleteTasks = async () => {
+    const result = await Swal.fire({
+      title: "Estás seguro?",
+      text: "Todas las tareas se eliminarán permanentemente!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Eliminar tareas",
+      cancelButtonText: "Cancelar",
+      color: "#fff",
+      background: "#1f2937",
     });
-    const data = await res.json();
-    router.push("/");
-    router.refresh();
+
+    if (result.isConfirmed) {
+      await Swal.fire({
+        title: "Tareas eliminadas!",
+        text: "Las tareas se eliminaron correctamente.",
+        icon: "success",
+        color: "#fff",
+        background: "#1f2937",
+      });
+
+      // Delete all tasks
+      await fetch(`/api/tasks`, {
+        method: "DELETE",
+      });
+
+      router.push("/");
+      router.refresh();
+
+      // Load and set tasks again after deletion
+      const updatedTasks = await loadTasks();
+      setTasks(updatedTasks);
+    }
   };
 
   return (
@@ -68,16 +94,16 @@ const Home = () => {
           <button
             type="button"
             className="bg-red-800 hover:bg-red-900 text-white sm:py-2 sm:px-3 p-2 rounded w-fit text-sm"
-            onClick={deleteTasks}
+            onClick={handleDeleteTasks}
           >
             Eliminar tareas
           </button>
         )}
       </div>
       <div
-        className={`w-full grid grid-cols-2 sm:flex flex-wrap ${
+        className={`w-full grid grid-cols-2 sm:flex flex-wrap max-w-8xl ${
           !tasks || tasks.length === 0 ? "justify-center" : "justify-start"
-        } items-center gap-3`}
+        } items-center gap-3 `}
       >
         {!tasks || tasks.length === 0 ? (
           <div className="flex h-[calc(100vh-7rem)] justify-center items-center gap-4 col-span-2 sm:text-center font-Onest">
