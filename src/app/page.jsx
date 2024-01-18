@@ -17,7 +17,7 @@ const loadTasks = async () => {
   return data;
 };
 
-export const dynamic = 'force-dynamic'
+export const dynamic = "force-dynamic";
 
 const Home = () => {
   const router = useRouter();
@@ -108,8 +108,8 @@ const Home = () => {
         )}
       </div>
       <div
-        className={`w-full grid grid-cols-2 sm:flex flex-wrap max-w-8xl ${
-          !tasks || tasks.length === 0 ? "justify-center" : "justify-start"
+        className={`w-full flex sm:grid sm:grid-cols-2 md:grid md:grid-cols-3 lg:grid lg:grid-cols-4 xl:grid xl:grid-cols-5 flex-wrap max-w-8xl ${
+          tasks.length === 0 ? "flex justify-center" : "justify-start"
         } items-center gap-3 `}
       >
         {tasks.length === 0 ? (

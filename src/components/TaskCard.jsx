@@ -38,10 +38,15 @@ const TaskCard = ({ id, title, description, date, isCompleted }) => {
           onConfettiComplete={() => setConfetti(false)}
         />
       ) : null}
-      <div className="text-wrap p-4 rounded flex flex-col gap-3 w-full sm:w-fit h-fit bg-slate-900 hover:bg-slate-800 border border-slate-700 text-white font-Onest">
+      <div
+        className={`text-wrap p-4 rounded flex flex-col gap-3 w-full h-full bg-slate-900 hover:bg-slate-800 border border-slate-700 text-white font-Onest 
+      ${completed && `opacity-60`}`}
+      >
         <h1 className="sm:text-xl text-base text-slate-100">{title}</h1>
-        <p className="sm:text-lg text-sm text-slate-300 w-full text-wrap h-full">{description}</p>
-        <div className="flex justify-center sm:justify-end items-center mt-3">
+        <p className="sm:text-lg text-sm text-slate-300 w-full text-wrap h-full">
+          {description}
+        </p>
+        <div className="flex justify-between items-center mt-3">
           <p
             onClick={handleCompleted}
             className={`text-xs ${
@@ -50,15 +55,13 @@ const TaskCard = ({ id, title, description, date, isCompleted }) => {
           >
             {completed ? "✅ Completado " : "🕑 Pendiente"}
           </p>
-        </div>
-        <div className="flex justify-center sm:justify-end items-center w-full">
-          <p className="text-xs sm:text-sm text-slate-400 w-fit">
-            <span className="hidden sm:inline">Creado el: </span> {date}
-          </p>
+          <div className="flex justify-center sm:justify-end items-center w-fit">
+            <p className="text-xs sm:text-sm text-slate-400 w-fit">{date}</p>
+          </div>
         </div>
 
-        <div className="flex w-full sm:justify-between justify-center items-center gap-2 flex-wrap mt-3">
-          <Link href={`/task/${id}`} className="sm:w-fit w-full">
+        <div className="flex w-full justify-between items-center gap-2 flex-wrap mt-3">
+          <Link href={`/task/${id}`} className="w-fit">
             <button
               type="submit"
               className="bg-blue-800 hover:bg-blue-900 text-white sm:py-2 sm:px-3 p-2 sm:w-fit w-full rounded text-sm"
@@ -66,7 +69,7 @@ const TaskCard = ({ id, title, description, date, isCompleted }) => {
               Ver
             </button>
           </Link>
-          <Link href={`/edit/${id}`} className="sm:w-fit w-full">
+          <Link href={`/edit/${id}`} className="w-fit">
             <button
               type="submit"
               className="bg-green-800 hover:bg-green-900 text-white sm:py-2 sm:px-3 p-2 sm:w-fit w-full rounded text-sm"
