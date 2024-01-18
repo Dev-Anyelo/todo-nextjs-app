@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
 
 const loadTasks = async () => {
-  const res = await fetch(`/api/tasks`);
+  const res = await fetch(`http://localhost:3000/api/tasks`);
   const data = await res.json();
   return data;
 };
